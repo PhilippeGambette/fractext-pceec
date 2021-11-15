@@ -64,7 +64,11 @@ for file in glob.glob(folder + "\\psd-cs1\\*.psd"):
             while res:
                token = res.group(2) 
                posLabel = res.group(1) 
-               if posLabel != "CODE" and posLabel != "ID" and token != "*" and token != "0" and token != "*T*-1":
+               
+               
+               if posLabel != "CODE" and posLabel != "ID" and token != "*" and token != "*arb*" and token != "*con*" and token != "*exp*" and token != "*pro*" and token != "0" and token[0:3] != "*T*" and token[0:5] != "*ICH*" and token[0:2] != "*-":
+                  if "*" in token:
+                     print("!!!!!!"+token)
                   # the token should be counted (neither CODE nor ID, nor empty token * or 0)
                   nbTokens += 1
                   #print(file + "new token: " + token + " ("+ posLabel + ")")
@@ -73,7 +77,7 @@ for file in glob.glob(folder + "\\psd-cs1\\*.psd"):
                         punctuationDict[token] += 1
                      else:
                         punctuationDict[token] = 1
-                     print(token + " ("+ posLabel + ")")
+                  #print(token + " ("+ posLabel + ")")
                   if token in punctuation:
                      nbPunctuation += 1
                      
